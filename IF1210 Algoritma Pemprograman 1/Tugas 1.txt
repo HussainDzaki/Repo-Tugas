@@ -1,0 +1,69 @@
+Soal no 1
+PROGRAM Menghitung Jarak Tempuh
+{Spesifikasi Program : Menghitung jarak tempuh jika diberi v dan t}
+
+KAMUS
+s,v,t : real
+ALGORITMA
+output("Masukan kecepatan (m/s): \n")
+input(v)
+output("Masukkan waktu yang ditempuh (detik): \n")
+input(t)
+s <- v * t 
+output("jarak yang ditempuh adalah ", s)
+
+
+Soal no 2
+PROGRAM Menghitung Keliling Lingkaran
+{Spesifikasi Program : Menghitung keliling lingkaran dari jari-jari}
+
+KAMUS
+constant PI : real = 3.14159
+r,kel : real
+
+ALGORITMA
+output("Masukkan jari-jari lingkaran: \n")
+input(r)
+kel <- 2 * PI * r
+output("Luas Lingkarannya adalah ", kel)
+
+
+Soal no 3
+PROGRAM Menghitung Total Harga Kelereng
+{Spesifikasi Program : Menghitung total harga kelereng dari user}
+
+KAMUS 
+constant hMe : integer = 10000
+constant hHi : integer = 15000
+constant hKu : integer = 20000
+m,h,k, tot: integer
+
+ALGORITMA
+output("Banyak kelereng merah: ")
+input(m)
+output("Banyak kelereng hijau: ")
+input(h)
+output("Banyak kelereng kuning: ")
+input(k)
+tot <- m * hMe + h * hHi + k * hKu
+output("Total harganya adalah Rp", tot)
+
+
+Soal no 4
+PROGRAM Membaca Sebuah Data Berbentuk Titik
+{Spesifikasi Program : program yang membaca sebuah data bertipe titik (misalnya P)
+dan menampilkannya ke layar dalam format: (x,y)}
+
+KAMUS
+type Point : < x : real; y : real>
+koor : Point
+a,b : real
+
+ALGORITMA
+output("Masukkan koordinat x: ")
+input(a)
+output("Masukkan koordinat y: ")
+input(b)
+koor.x <- a
+koor.y <- b
+output((koor.x , koor.y))
