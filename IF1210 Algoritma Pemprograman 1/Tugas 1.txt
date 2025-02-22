@@ -33,9 +33,9 @@ PROGRAM Menghitung Total Harga Kelereng
 {Spesifikasi Program : Menghitung total harga kelereng dari user}
 
 KAMUS 
-constant hMe : integer = 10000
-constant hHi : integer = 15000
-constant hKu : integer = 20000
+constant hMe : integer = 10
+constant hHi : integer = 15
+constant hKu : integer = 20
 m,h,k, tot: integer
 
 ALGORITMA
