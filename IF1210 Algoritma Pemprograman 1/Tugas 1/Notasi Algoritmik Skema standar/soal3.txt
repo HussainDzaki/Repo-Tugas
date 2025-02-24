@@ -1,0 +1,31 @@
+PROGRAM MenghtiungSelisihPecahan
+{Program ini akan mencek kevalidan penyebut dan menghitung selisih kedua pecahan tersebut}
+
+KAMUS 
+    type pecahan : < pembilang : integer;
+                     penyebut : integer; > {penyebut > 0}
+    P1 : pecahan
+    P2 : pecahan
+    P3 : pecahan
+    selisihpembilang : integer
+    penyebutbaru : integer
+
+ALGORITMA
+    input(P1.pembilang)
+    input(P1.penyebut)
+    input(P2.pembilang)
+    input(P2.penyebut)
+
+    if P1.penyebut > 0 and P2.penyebut > 0 then 
+        selisihpembilang <- P1.penyebut * P2.pembilang - P2.pembilang * P1.penyebut
+        penyebutbaru <- P1.penyebut * P2.pembilang
+        P3.penyebut <- penyebutbaru
+        if selisihpembilang < 0 then 
+            selisihpembilang *= -1
+            P3.pembilang <- selisihpembilang
+        else 
+            P3.pembilang <- selisihpembilang
+        output("Selisihnya adalah ", P3.pembilang , "/", P3.penyebut)
+    else {P1.penyebut, P2.penyebut <= 0}
+        output("Masukkan tidak valid")
+

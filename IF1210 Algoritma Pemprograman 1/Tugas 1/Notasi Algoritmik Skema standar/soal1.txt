@@ -1,0 +1,19 @@
+PROGRAM Menentukan Jam Valid
+{Spesifikasi Program : Menerima input h,m,s yang kemudian dimasukkan kedalam type jam, 
+program akan mengoutput tidak valid jika tidak memenuhi 0<=h<=23 ; 0 ,= m<=59; 0<=s<= 59}
+
+KAMUS 
+    type jam :<HH : integer[0..23]; {bagian jam} 
+               MM : integer[0..59]; {bagian menit}
+               SS : integer[0..59]; {bagian detik}>
+    jarumjam : jam
+    h,m,s : integer
+
+ALGORITMA
+    input(h,m,s)
+    if (0 <= h <= 23) and (0<=m<=59) and (0<= s <= 59) then
+        jarumjam.HH <- h 
+        jarumjam.MM <- m 
+        jarumjam.SS <- s 
+    else {h,m,s tidak valid}
+        output("Tidak dapat membentuk jam")

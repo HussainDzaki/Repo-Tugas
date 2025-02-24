@@ -1,0 +1,27 @@
+PROGRAM MenghitungHambatanRangkaianTotal
+{Program dapat menghitung resistensi total tiga resistor dalam rangkaian seri atau pararel}
+
+KAMUS 
+    R1,R2,R3 : integer
+    RT : float
+    pil : string
+
+ALGORITMA 
+    input(R1,R2,R3)
+    input(pil)
+    if (pil == "pararel") then
+        if R1 > 0 and R2 > 0 and R3 > 0 then
+            RT <- 1/R1 + 1/R2 + 1/R3 
+            RT <- 1/RT
+            output(RT)
+        else {R1,R2,R3 <= 0}
+            output("Input tidak valid, tidak boleh ada resistor yang nol")
+    else if (pil == "serial") then 
+        if (R1 >= 0 and R2 >= 0 and R3 >=0) then 
+            RT = R1 + R2 + R3 
+            output(RT)
+        else {R1,R2,R3 < 0}
+            output("Input tidak valid, Tidak boleh ada resistor yang negatif")
+    else 
+        output("Masukan pilihan yang valid")
+    
