@@ -12,8 +12,11 @@ int main(){
     printf("Masukka y: ");
     scanf("%f", &y);
     printf("Yang terbesar adalah : ");
-    if (x>y){printf("%f", x);}
-    else{printf("%f", y);
+    if (x>y){ 
+        printf("%f", x);
+        }
+    else{// y > x
+        printf("%f", y);
     }
 
     return 0;
