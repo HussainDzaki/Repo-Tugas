@@ -2,6 +2,7 @@
 // Menghitung jarak tempuh dimana v,t>0; v = float, t=int
 
 #include <stdio.h>
+#define PI = 3.14149
 int main(){
     // KAMUS
     int t;

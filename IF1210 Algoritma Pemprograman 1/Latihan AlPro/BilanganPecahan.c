@@ -32,7 +32,7 @@ int main(){
             P3.pembilang = pembilangbaru;
         
         }
-        printf("Maka hasil dari selisihnya adalah %d/%d", P3.pembilang, P3.penyebut);
+        printf("Maka hasil dari selisihnya adalah %d/ %d", P3.pembilang, P3.penyebut);
     }else{ // salah satu yang dimasukan  ada 0
         printf("Masukan tidak valid");
     }
