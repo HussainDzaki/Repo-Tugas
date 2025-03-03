@@ -9,14 +9,19 @@ KAMUS
     P3 : pecahan
     selisihpembilang : integer
     penyebutbaru : integer
-
+    a,b,c,d : integer
 ALGORITMA
-    input(P1.pembilang)
-    input(P1.penyebut)
-    input(P2.pembilang)
-    input(P2.penyebut)
+    input(a)
+    input(b)
+    input(c)
+    input(d)
 
-    if P1.penyebut > 0 and P2.penyebut > 0 then 
+    if b > 0 and d > 0 then 
+        P1.pembilang <- a
+        P1.penyebut <- b
+        P2.pembilang <- c
+        P3.penyebut <- d
+
         selisihpembilang <- P1.penyebut * P2.pembilang - P2.pembilang * P1.penyebut
         penyebutbaru <- P1.penyebut * P2.pembilang
         P3.penyebut <- penyebutbaru
@@ -26,6 +31,6 @@ ALGORITMA
         else 
             P3.pembilang <- selisihpembilang
         output("Selisihnya adalah ", P3.pembilang , "/", P3.penyebut)
-    else {P1.penyebut, P2.penyebut <= 0}
+    else {b <= 0 or d <= 0}
         output("Masukkan tidak valid")
 
