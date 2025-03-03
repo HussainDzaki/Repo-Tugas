@@ -1,0 +1,23 @@
+PROGRAM Menentukan Jam Valid
+
+{Meminta user memasukkan tiga nilai untuk dibuatkan jam yaitu HH, MM, SS dengan ketentuan 0 ≤ HH ≤ 23, 0 ≤ MM ≤ 59, dan 0 ≤ SS ≤ 59, jika user tidak menginput data yang valid maka akan mengulang sampai mendapatkan nilai yang valid  dan jika ketika ketiga input valid akan dimasukkan ke data  type jam}
+
+
+
+KAMUS
+
+    type jam : <HH : integer[0≤ HH ≤ 23]; { bagian jam }
+                       MM : integer[0 ≤ MM ≤ 59]; { bagian menit }
+                        SS : integer[0 ≤ SS ≤ 59] > { bagian detik }
+    J : jam
+    h, m, s : integer
+
+ALGORITMA
+    iterate { memastikan data valid }
+        input(h, m, s) 
+    stop (0 ≤ h ≤ 23 and 0 ≤ m ≤ 59 and 0≤ s ≤ 59)            {EOP: 0 ≤ h ≤ 23 and 0≤ m ≤ 59 and 0 ≤ s ≤ 59}
+        output("Tidak dapat membentuk jam ")                     {next elmt}
+
+    { Proses data valid }
+    J.HH ← h ; J.MM ← m; J.SS ← s
+    

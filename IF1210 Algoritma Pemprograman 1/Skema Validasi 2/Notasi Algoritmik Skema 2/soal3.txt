@@ -1,0 +1,44 @@
+PROGRAM Menghitung Rata-rata Pelajaran 
+{Program akan menghitung rata-rata UTS dan UAS dari setiap pelajaran yang diikutinya dengan 0 ≤ nilaiUTS≤ 100 dan diakhiri jika memasukkan UTS di luar rangenya, kemudian menghitung dan mencetak rata-rata nilai akhir dari seluruh pelajaran, Jika nilai UAs tidak di dalam range 0 ≤ nilaiUAS ≤ 100 maka data UAS di ulang. Nilai Akhir dihitung dgn rumus 40% * nilaiUTS + 60% * nilaiUAS }
+
+
+
+KAMUS 
+
+    nilaiUTS, nilaiUAS : integer
+    rataAkhir, rataPelajaran : real
+    sumNilaiUTS, sumNilaiUAS, i : integer
+
+
+
+ALGORITMA 
+
+    output("Nilai UTS = ")
+
+    input(nilaiUTS)     { Element pertama}
+
+    if (nilaiUTS < 0 or nilaiUTS > 100) then { Memvalidasi elemen pertama}
+
+        output("Data kosong, tidak ada nilai rata-rata!")
+
+    else
+        { Memproses element yang valid }
+        { inisialisasi }
+        i ← 0; sumNilaiUTS ← 0 ; sumNilaiUAS ← 0 
+        repeat
+            sumNilaiUTS ← sumNilaiUTS + nilaiUTS
+             iterate { Memastikan input nilaiUAS valid }
+                output("Nilai UAS = ")
+                 input("nilaiUAS")
+             stop(nilaiUAS > 0 and nilaiUAS < 100 )
+                 output("Ulangi input nilai (0..100)!")
+             { Memproses nilai UTS dan UAS yang valid }
+             sumNilaiUAS ← sumNilaiUAS + nilaiUAS
+             rataPelajaran ← (nilaiUTS * 0.4 + nilaiUAS * 0.6)
+             i ← i + 1
+             output("Nilai akhir pelajaran “, i, ”= ", rataPelajaran)
+             output("Nilai UTS = ")
+             input(nilaiUTS)
+        until(nilaiUTS <0 or nilaiUTS > 100)
+        nilaiAkhir ← (sumNilaiUTS * 0.4) + sumNilaiUAS * 0.6)/i 
+        output("Nilai rata-rata dari “, i, ” pelajaran adalah = ", nilaiAkhir)
