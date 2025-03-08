@@ -1,8 +1,9 @@
 #include <stdio.h>
 
 int main(){
-    char ikan[100];
-    scanf("%s", ikan);
-    printf("%s", ikan);
+    char var[30];
+    scanf("%s", var);
+    printf("%s", var);
+    
     return 0;
 }
