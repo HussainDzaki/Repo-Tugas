@@ -38,7 +38,7 @@ ALGORITMA
              i ← i + 1
              output("Nilai akhir pelajaran “, i, ”= ", rataPelajaran)
              output("Nilai UTS = ")
-             input(nilaiUTS)
+             input(nilaiUTS) {next element}
         until(nilaiUTS <0 or nilaiUTS > 100)
         nilaiAkhir ← (sumNilaiUTS * 0.4) + sumNilaiUAS * 0.6)/i 
         output("Nilai rata-rata dari “, i, ” pelajaran adalah = ", nilaiAkhir)
