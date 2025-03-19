@@ -27,17 +27,23 @@ ALGORITMA
         i ← 0; sumNilaiUTS ← 0 ; sumNilaiUAS ← 0 
         repeat
             sumNilaiUTS ← sumNilaiUTS + nilaiUTS
-             iterate { Memastikan input nilaiUAS valid }
+
+            terate { Memastikan input nilaiUAS valid }
+
                 output("Nilai UAS = ")
-                 input("nilaiUAS")
-             stop(nilaiUAS > 0 and nilaiUAS < 100 )
-                 output("Ulangi input nilai (0..100)!")
+                input("nilaiUAS")
+
+            stop(nilaiUAS > 0 and nilaiUAS < 100 )
+                    output("Ulangi input nilai (0..100)!")
+                
              { Memproses nilai UTS dan UAS yang valid }
+
              sumNilaiUAS ← sumNilaiUAS + nilaiUAS
              rataPelajaran ← (nilaiUTS * 0.4 + nilaiUAS * 0.6)
              i ← i + 1
              output("Nilai akhir pelajaran “, i, ”= ", rataPelajaran)
              output("Nilai UTS = ")
+             
              input(nilaiUTS) {next element}
         until(nilaiUTS <0 or nilaiUTS > 100)
         nilaiAkhir ← (sumNilaiUTS * 0.4) + sumNilaiUAS * 0.6)/i 

@@ -1,7 +1,8 @@
 #include <stdio.h>
 
 int main(){
-    int N,i, cnt;
+    long int N;
+    int i, cnt;
     scanf("%d", &N);
     i = 0;
     cnt = 0;

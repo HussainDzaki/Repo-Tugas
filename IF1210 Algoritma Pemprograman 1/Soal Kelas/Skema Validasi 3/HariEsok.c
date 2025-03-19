@@ -13,6 +13,7 @@ typedef struct
 
 }Tanggal;
 
+
 int kabisat(int tt);
 /* Diberikan tahun akan mengeluarkan true jika tahun kabisat dan false jika tidak */
 
@@ -172,8 +173,8 @@ void Bacatanggal(Tanggal *Date){
             printf("Masukkan tanggal yang valid\n");
         }
     }
-    Date->DD=hh;
-    Date->MM =bb;
+    (*Date).DD=hh;
+    (*Date).MM =bb;
     Date->YY= tt;
 }
 Tanggal Nextday(Tanggal Date){
@@ -233,3 +234,4 @@ void TulisTanggal(Tanggal Date){
     /* Merubah bulan dalam angka menjadi bulan dalam kata standar bahasa Indonesia*/
     printf("%d %s %d\n", Date.DD,NamaBulan(Date.MM), Date.YY );
 }
+
