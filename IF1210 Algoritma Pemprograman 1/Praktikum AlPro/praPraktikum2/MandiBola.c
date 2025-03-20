@@ -95,12 +95,3 @@ void HandleNimonsHunting(long input)
     printf("Total keuntungan Nimons dan Pak Gro: %d\n", (count_harta_karun * harga * 5) - (harga * count_lubang));
 }
 
-int main() {
-    int input_1;
-    long input_2;
-    scanf("%d", &input_1);
-    scanf("%ld", &input_2);
-    SelamatDatang(input_1);
-    HandleNimonsHunting(input_2);   
-    return 0;
-}
