@@ -1,0 +1,27 @@
+type TMahasiswa : < NIM : string,
+                    Nama : string,
+                    Nilai : integer { [0..100] } >
+type TabMhs : < TM : array [1..NMax] of TMahasiswa,
+                Neff : integer >
+
+procedure UrutTabMhs(input/output TMhs : TabMhs)
+{ Mengurutkan elemen TMhs secara terurut mengecil berdasarkan atribut Nilai dengan metode seleksi. }
+{ I.S.: TMhs terdefinisi, mungkin kosong atau berisi data. }
+{ F.S.: TMhs terurut mengecil berdasarkan Nilai. }
+
+KAMUS LOKAL
+    i : integer
+    pass : integer
+    temp : TMahasiswa
+    IMax : integer
+
+ALGORITMA
+    if (TabMhs.Neff > 1) then
+        pass traversal [1 .. TabMhs.Neff - 1]
+            IMax <- pass
+            i traversal [pass + 1 .. TabMhs.Neff ]
+                if  (TMhs.TM[i].Nilai > TMhs.TM[IMax].Nilai) then
+                    IMax <- i
+            temp <- TMhs.TM[IMax]        
+            TMhs.TM[IMax] <- TMhs.TM[pass]
+            TMhs.TM[pass] <- temp
