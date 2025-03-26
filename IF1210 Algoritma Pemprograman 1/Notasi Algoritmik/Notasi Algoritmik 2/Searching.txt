@@ -25,7 +25,4 @@ AlGORITMA
         else
             i <- i + 1
     
-    if Found then 
-        -> Found
-    else
-        -> Found
+    -> Found

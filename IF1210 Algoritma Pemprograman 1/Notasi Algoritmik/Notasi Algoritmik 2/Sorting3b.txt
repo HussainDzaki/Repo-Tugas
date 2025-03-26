@@ -1,0 +1,3 @@
+Soal nomor 1a tidak dapat diselesaikan dengan pendekatan pencacah (counting sort) karena data yang pada TabelSuhu adalah jenis bilangan real yang tidak dapat dihitung secara diskrit
+
+Soal nomor 3a tidak dapat diselesaikan dengan counting sort karena masing masing elemen TMhs berisi TMahasiswa yang berbeda

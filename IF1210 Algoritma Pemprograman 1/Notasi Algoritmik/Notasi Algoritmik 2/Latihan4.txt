@@ -1,0 +1,31 @@
+KAMUS
+constant NMax : integer = 100
+Neff : integer { indeks efektif tabel yang
+terdefinisi, 0 ≤ N ≤ NMax } >
+type TabInt : < Tab : array [1..NMax] of integer;
+
+procedure InputTerurut (input/output T : TabInt, input X : integer)
+{ Memasukkan elemen X ke dalam tabel T yang terurut membesar, sehingga T tetap terurut membesar setelah pemasukan. }
+{ I.S. T terdefinisi, mungkin kosong atau berisi data, dan terurut membesar. }
+{ F.S. X dimasukkan ke dalam T, dan T tetap terurut membesar. }
+
+KAMUS
+    i : integer
+    pos : integer
+
+ALGORITMA
+    pos <- 1
+    if (T.Neff < Nmax) then
+        while (pos <= T.Neff) and (T.Tab[pos] < X) do
+            pos = pos + 1
+        
+        { jika pos <= T.Neff, geser elemen ke kanan untuk membuat ruang bagi X}
+        if (pos <= T.Neff) then
+            i traversal[T.Neff . . pos]
+                T.Tab[i + 1] <- T.Tab[i]
+        
+        T.Tab[pos] <- X
+
+        T.Neff <- T.Neff + 1
+    else
+        output("Tabel Penuh")

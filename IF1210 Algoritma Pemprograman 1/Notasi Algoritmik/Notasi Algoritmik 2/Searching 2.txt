@@ -16,7 +16,6 @@ dan menghasilkan indeks di mana P ditemukan terakhir kali di T, atau 0 jika P ti
 KAMUS LOKAL
     i : integer
     idx : integer
-    Found : Boolean
 
 AlGORITMA
     i <- 1

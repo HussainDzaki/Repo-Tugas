@@ -1,0 +1,1 @@
+    // printf("%d", gcdArr(arr, N));

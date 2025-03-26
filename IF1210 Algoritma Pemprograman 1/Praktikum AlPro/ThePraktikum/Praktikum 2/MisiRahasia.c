@@ -132,7 +132,7 @@ const char *getZodiac(int day, int month)
 long long daysFromBeginning(int day, int month, int year)
 {
     long long total = 0;
-    total += day - 1;
+    total += day;
     for (int i = 1; i < month; i++)
     {
         total += getDaysInMonth(i, year);
@@ -177,15 +177,9 @@ long long dateDifference(int d1, int m1, int y1, int d2, int m2, int y2)
 const char *getPasaran(int day, int month, int year)
 {
     const char *pasaran[] = {"Legi", "Pahing", "Pon", "Wage", "Kliwon"};
-    long long cek = daysFromBeginning(day, month, year) % 5;
-    if (cek == 0)
-    {
-        return pasaran[4];
-    }
-    else
-    {
-        return pasaran[cek - 1];
-    }
+    int cek = (daysFromBeginning(day, month, year) ) % 5;
+    return pasaran[cek];
+
 }
 
 /**
@@ -196,13 +190,14 @@ const char *getPasaran(int day, int month, int year)
  */
 int main()
 {
-    char kata[16];
+    char kata[20];
     int d1, m1, y1, d2, m2, y2;
-    scanf("%s %d %d %d", kata, &d1, &m1, &y1);
-    while (!(strcmp(kata, "SELESAI") == 1))
+    scanf("%19s", kata);
+    while ((strcmp(kata,"SELESAI") != 0))
     {
-        if (strcmp(kata, "VALIDASI") == 0)
+        if (strcmp(kata,"VALIDASI") == 0)
         {
+            scanf("%d %d %d",&d1, &m1, &y1);
             if (isValidDate(d1, m1, y1))
             {
                 printf("YA\n");
@@ -214,22 +209,26 @@ int main()
         }
         else if (strcmp(kata, "HARI") == 0)
         {
+            scanf("%d %d %d",&d1, &m1, &y1);
             printf("%s\n", getDayOfWeek(d1, m1, y1));
         }
         else if (strcmp(kata, "ZODIAK") == 0)
         {
+            scanf("%d %d",&d1, &m1);
             printf("%s\n", getZodiac(d1, m1));
         }
         else if (strcmp(kata, "SELISIH") == 0)
         {
+            scanf("%d %d %d",&d1, &m1, &y1);
             scanf("%d %d %d", &d2, &m2, &y2);
             printf("%lld\n", dateDifference(d1, m1, y1, d2, m2, y2));
         }
         else if (strcmp(kata, "PASARAN") == 0)
         {
+            scanf("%d %d %d",&d1, &m1, &y1);
             printf("%s\n", getPasaran(d1, m1, y1));
         }
-        scanf("%s %d %d %d", kata, &d1, &m1, &y1);
+        scanf("%19s", kata);
     }
     return 0;
 }
