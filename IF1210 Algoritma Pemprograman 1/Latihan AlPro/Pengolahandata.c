@@ -2,29 +2,29 @@
 
 void insertionsort(int arr[], int n){
     if (n > 0)
+    for (int pass = 0; pass < n; pass++)
     {
-        for (int pass = 1; pass < n; pass++)
+        int key = arr[pass];
+        int i = pass - 1;
+        while (key < arr[i] && i > 0)
         {
-            int key = arr[pass];
-            int index = pass - 1;
-            while (key > arr[index] && index > 0)
-            {
-                arr[index + 1] = arr[index];
-                index = index - 1 ;
-            }
-            if (key <= arr[index])
-            {
-                arr[index+1] = key;
-            }
-            else{
-                arr[index + 1] = arr[index];
-                arr[index] = key; 
-            }
-            
-            
-            
-        }  
+            arr[i+1] = arr[i];
+            i = i -1;
+        }
+
+        if (key >= arr[i])
+        {
+            arr[i+1] = key;
+        }else
+        {
+            arr[i+1] = arr[i];
+            arr[i] = key;
+        }
+        
+        
+        
     }
+    
 }
 
 void printArr(int arr[], int n){
@@ -81,11 +81,27 @@ int maxArr(int arr[], int n){
     
 }
 
+void reverseArr(int arr[], int n){
+    int awal = 0;
+    int akhir = n-1;
+    while (awal < akhir)
+    {
+        int temp = arr[awal];
+        arr[awal] = arr[akhir];
+        arr[akhir] = temp;
+        awal++;
+        akhir--;
+    }
+    
+}
+
 
 int main(){
     int arr[7] = {1 , 5 ,7 ,9, 3 , 1 ,999999};
     insertionsort(arr,7);
     printArr(arr, 7);
-    printf("%d", maxArr(arr,7) ) ;
+    printf("%d\n", maxArr(arr,7) ) ;
+    reverseArr(arr, 7);
+    printArr(arr, 7);
     return 0;
 }
