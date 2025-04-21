@@ -1,38 +1,24 @@
 #include <stdio.h>
 
-void memerikanindex(int deret[], int n, int target){
-    int val1, val2;
-    for (int i = 0; i < n; i++)
-    {   
-        val1 = deret[i];
-        int j = 0;
-        while ( j< n)
-        {   
+int main() {
+    int n, target;
+    scanf("%d", &n);
+    int nums[n];
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &nums[i]);
+    }
+    scanf("%d", &target);
 
-            if ((deret[i] + deret[j] == target )&& i != j)
-            {
-                printf("[%d, %d]\n", i,j);
-            }
-            j++;
-            if (val1 == deret[j]){
+    int found = 0;
+    for (int i = 0; i < n - 1 && !found; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (nums[i] + nums[j] == target) {
+                printf("[%d, %d]\n", i, j);
+                found = 1;
                 break;
             }
         }
-        
-        
     }
-    
-}
 
-int main(){
-    int n, tar;
-    scanf("%d", &n);
-    int arr[n];
-    for (int i = 0; i < n; i++)
-    {
-        scanf("%d", &arr[i]);
-    }
-    scanf("%d", &tar);
-    memerikanindex(arr,n,tar);
-    
+    return 0;
 }
