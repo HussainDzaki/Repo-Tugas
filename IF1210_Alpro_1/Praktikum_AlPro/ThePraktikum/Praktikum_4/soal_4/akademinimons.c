@@ -104,7 +104,17 @@ void parseStudentData(char *line, Nimon *nimon)
 
     strcpy(nimon->nim, strtok(line, "|"));
     strcpy(nimon->name, strtok(NULL, "|"));
-    char semuanilai = strtok(NULL, "|");
+    char *semuanilai = strtok(NULL, "|");
+
+    char *strnilai = strtok(semuanilai, ",");
+    nimon->scoreCount = 0;
+    while (strnilai != NULL)
+    {
+        nimon->scores[nimon->scoreCount] = atoi(strnilai);
+        nimon->scoreCount ++;
+        strnilai = strtok(NULL, ",");
+    }
+    
     
 }
 
@@ -119,27 +129,24 @@ void parseStudentData(char *line, Nimon *nimon)
  */
 void calculateStatistics(Nimon *nimon)
 {
-    int sums = 0, cnt = 0, min = 1000, max = -999, cur;
-    char *nilai = strtok(nimon->scores, ",");
-
-    while (nilai != NULL)
+    int sums = 0;
+    nimon->lowest = nimon->scores[0];
+    nimon->highest = nimon->scores[0];
+    for (int i = 0; i < nimon->scoreCount; i++)
     {
-        cur = atoi(strtok(NULL, ","));
-        if (cur < min)
+        sums += nimon->scores[i];
+        if (nimon->scores[i] < nimon->lowest)
         {
-            min = cur;
+            nimon->lowest = nimon->scores[i];
         }
-        if (cur > max)
+        if (nimon->scores[i] > nimon->highest)
         {
-            max = cur;
+            nimon->highest = nimon->scores[i];
         }
-
-        sums += cur;
-        cnt++;
     }
-    nimon->average = (float)sums / cnt;
-    nimon->highest = max;
-    nimon->lowest = min;
+    
+    nimon->average = (float)sums/nimon->scoreCount;
+
     if (nimon->average >= PASS_THRESHOLD)
     {
         strcpy(nimon->status, "PASS");
@@ -185,24 +192,27 @@ void writeStudentResult(Nimon *nimon)
  */
 void writeSummary(Nimon *nimons, int nimonCount)
 {
-    int JumlahLulus, JumlahTidakLulus, i;
-    Nimon key;
-
-    for (int pass = 1; pass < nimonCount; pass++)
+    int JumlahLulus = 0 , JumlahTidakLulus = 0 ;
+    
+    Nimon Maks = nimons[0];
+    float max = nimons[0].average;
+    int i = 0;
+    while (i < nimonCount)
     {
-        key = nimons[pass];
-        i = pass - 1;
-        while (i > 0 && (atoi(key.nim) < atoi(nimons[i].nim) && key.average < nimons[i].average))
-        {
-            nimons[i + 1] = nimons[i];
-            i--;
-        }
-        nimons[i + 1] = key;
+       if (nimons[i].average > max)
+       {
+            Maks = nimons[i];
+            max = Maks.average;
+       }
+       i++;
+       
     }
+    
+    
 
     for (int i = 0; i < nimonCount; i++)
     {
-        if (nimons[i].status == "PASS")
+        if (nimons[i].average >= PASS_THRESHOLD)
         {
             JumlahLulus++;
         }
@@ -213,9 +223,10 @@ void writeSummary(Nimon *nimons, int nimonCount)
     }
 
     printf("%d\n", nimonCount);
-    printf("%d %0.2f\n", JumlahLulus, (float)JumlahLulus / nimonCount);
-    printf("%d %0.2f\n", JumlahTidakLulus, (float)JumlahTidakLulus / nimonCount);
-    writeStudentResult(&nimons[0]);
+    printf("%d %0.2f%%\n", JumlahLulus, (float)JumlahLulus / nimonCount * 100);
+    printf("%d %0.2f%%\n", JumlahTidakLulus, (float)JumlahTidakLulus / nimonCount*100);
+    printf("%s|%s|%.2f\n", Maks.nim, Maks.name, Maks.average);
+
 }
 
 /**
@@ -236,15 +247,13 @@ int run(char *inputFileName)
     }
     char strNimon[MAX_IO_LENGTH];
     char readNimon[MAX_IO_LENGTH];
-    strcpy(readNimon, fscanf(filenimons, "%s", &strNimon));
 
     Nimon nimons[MAX_NIMONS];
     int nimonsindex = 0;
-    while (readNimon == 1 && readNimon != NULL)
+    while (fgets(readNimon, sizeof(strNimon), filenimons) != NULL)
     {
         parseStudentData(readNimon, &nimons[nimonsindex]);
         calculateStatistics(&nimons[nimonsindex]);
-        strcpy(readNimon, fscanf(filenimons, "%s", &strNimon));
         nimonsindex++;
     }
 
@@ -253,7 +262,8 @@ int run(char *inputFileName)
         writeStudentResult(&nimons[j]);
     }
 
-    writeSummary(nimons, nimonsindex + 1);
+    writeSummary(nimons, nimonsindex);
 
     fclose(filenimons);
+    return 0;
 }
