@@ -62,7 +62,7 @@ float *GetElement(Matrix *M, int row, int col)
 /* Mutator */
 bool SetElement(Matrix *M, int row, int col, float value)
 {
-    if (row < GetRows(*M) && col < GetRows(*M) && row >= 0 && col >= 0)
+    if (row < M->rows && col < M->cols && row >= 0 && col >= 0)
     {
         M->data[row][col] = value;
         return true;
@@ -78,14 +78,13 @@ bool SetElement(Matrix *M, int row, int col, float value)
 void ReadMatrix(Matrix *M)
 {
     int row, col;
-    while (true)
+    do
     {
         scanf("%d %d", &row, &col);
-        if (row >= 1 && col >= 1)
-        {
-            break;
-        }
     }
+    while (!(row <= MAX_ROWS && col <= MAX_COLS && row > 0 && col > 0));
+       
+    
 
     CreateMatrix(row, col, M);
     for (int i = 0; i < row; i++)
@@ -115,18 +114,15 @@ void ReadMatrix(Matrix *M)
 
 void PrintMatrix(Matrix M)
 {
-    for (int i = 0; i < M.rows; i++)
-    {
-        for (int j = 0; j < M.cols; j++)
-        {
-            printf("%.2f", M.data[i][j]);
-            if (j < M.cols - 1)
-            {
-                printf(" ");
-            }
+    for (int i = 0; i < M.rows; i++){
+        for (int j = 0; j < M.cols; j++){
+
+            printf("%0.2f ", M.data[i][j]);
+            
         }
         printf("\n");
     }
+    
 }
 /* I.S. M terdefinisi */
 /* F.S. Seluruh elemen M tertulis ke layar dalam format matrix */
@@ -143,15 +139,13 @@ bool IsSquare(Matrix M)
 bool IsSymmetric(Matrix M)
 {
     bool hasil = true;
-    if (IsSquare(M))
-    {
-        for (int i = 1; i < M.rows; i++)
-        {
-            for (int j = 1; j < M.cols; j++)
-            {
+    if (IsSquare(M)){
+        for (int i = 0; i < M.rows && hasil; i++){
+            for (int j = 0; j < i; j++){
                 if (M.data[i][j] != M.data[j][i])
                 {
                     hasil = false;
+                    break;
                 }
             }
         }
@@ -169,11 +163,10 @@ bool IsDiagonallyDominant(Matrix M)
 {
     bool hasil = true;
 
-    for (int i = 1; i < M.rows; i++)
-    {
+    for (int i = 0; i < M.rows; i++){
         float sums = 0;
         float diag = 0;
-        for (int j = 1; j < M.cols; j++)
+        for (int j = 0; j < M.cols; j++)
         {
 
             if (i != j)
@@ -199,16 +192,13 @@ bool IsDiagonallyDominant(Matrix M)
 Matrix *MultiplyMatrix(Matrix M1, Matrix M2)
 {
     Matrix M3;
-    if (M1.cols != M2.rows)
-    {
+    if (M1.cols != M2.rows){
         return NULL;
     }
     Matrix *pointer = (Matrix *)malloc(sizeof(Matrix));
     CreateMatrix(M1.rows, M2.cols, pointer);
-    for (int i = 0; i < M1.rows; i++)
-    {
-        for (int j = 0; j < M2.cols; j++)
-        {
+    for (int i = 0; i < M1.rows; i++){
+        for (int j = 0; j < M2.cols; j++){
             float sum = 0;
             for (int x = 0; x < M1.cols; x++)
             {
@@ -226,15 +216,13 @@ Matrix *MultiplyMatrix(Matrix M1, Matrix M2)
 
 Matrix *AddMatrix(Matrix M1, Matrix M2)
 {
-    if (M1.rows != M2.rows || M1.cols != M2.cols)
-    {
+    if (M1.rows != M2.rows || M1.cols != M2.cols){
         return NULL;
     }
     Matrix *pointer = (Matrix *)malloc(sizeof(Matrix));
     CreateMatrix(M1.rows, M2.cols, pointer);
-    for (int i = 0; i < M1.cols; i++)
-    {
-        for (int j = 0; i < M2.cols; j++)
+    for (int i = 0; i < M1.rows; i++){
+        for (int j = 0; j < M2.cols; j++)
         {
             pointer->data[i][j] = M1.data[i][j] + M2.data[i][j];
         }
@@ -248,15 +236,13 @@ Matrix *AddMatrix(Matrix M1, Matrix M2)
 
 Matrix *SubtractMatrix(Matrix M1, Matrix M2)
 {
-    if (M1.rows != M2.rows || M1.cols != M2.cols)
-    {
+    if (M1.rows != M2.rows || M1.cols != M2.cols){
         return NULL;
     }
     Matrix *pointer = (Matrix *)malloc(sizeof(Matrix));
     CreateMatrix(M1.rows, M2.cols, pointer);
-    for (int i = 0; i < M1.cols; i++)
-    {
-        for (int j = 0; i < M2.cols; j++)
+    for (int i = 0; i < M1.rows; i++){
+        for (int j = 0; j < M2.cols; j++)
         {
             pointer->data[i][j] = M1.data[i][j] - M2.data[i][j];
         }
@@ -272,10 +258,8 @@ Matrix MultiplyScalar(Matrix M, float scalar)
 {
     Matrix result;
     CreateMatrix(M.rows, M.cols, &result);
-    for (int i = 1; i < M.rows; i++)
-    {
-        for (int j = 1; i < M.cols; j++)
-        {
+    for (int i = 0; i < M.rows; i++){
+        for (int j = 0; j < M.cols; j++){
             result.data[i][j] = M.data[i][j] * scalar;
         }
     }
@@ -288,11 +272,9 @@ Matrix MultiplyScalar(Matrix M, float scalar)
 Matrix GetTranspose(Matrix M)
 {
     Matrix result;
-    CreateMatrix(M.rows, M.cols, &result);
-    for (int i = 1; i < M.rows; i++)
-    {
-        for (int j = 1; i < M.cols; j++)
-        {
+    CreateMatrix(M.cols, M.rows, &result);
+    for (int i = 0; i < M.rows; i++){
+        for (int j = 0; j < M.cols; j++){
             result.data[j][i] = M.data[i][j];
         }
     }

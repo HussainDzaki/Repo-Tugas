@@ -1,0 +1,22 @@
+
+Harua ada
+isEmpty -> mengecek array empty
+indexOf -> searching arraynya
+length -> mengembalikan element pada list
+setElmt -> merubah pada posisi tertentu
+concat -> mengabungkan dua list
+insert -> memasukan elemen pada posisi tertentu
+delete -> mengapus elemen pada posisi tertentu
+
+
+Apakah perlu perubahan definisi tipe bentukan List dari alt-1a ke
+alt-1b dan dari alt-2a ke alt-2b? Jika ya, tuliskan perubahannya
+
+Alt 1a : 
+- Array kosong harus diinisialisasimemorinya dengan nilai khusus yang disebut mark.
+- Elemen terisi harus kontigu: tidak boleh ada mark di antara nilai terisi.
+
+Eksplisit (alt-2)
+- Semua elemen array dapat berisi nilai yang valid namun yang dipedulikan hanya elemen pada indeks-indeks yang efektif (0..nEff-1).
+
+disebutkan juga ada jenis implementasi jenis array ini yaitu rata kiri dan tidak rata kiri, kelebihan dari array tidak rata kiri adalah memungkinkan untuk melakukan insersi dan delesi dengan lebih mudah dikarenakan memberikan tempat untuk menaruh elemen

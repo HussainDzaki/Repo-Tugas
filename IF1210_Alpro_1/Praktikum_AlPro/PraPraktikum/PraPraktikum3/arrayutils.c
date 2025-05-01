@@ -12,9 +12,7 @@ void sort(int arr[], int n)
     // menggunakan insertion sort
 
     // memulai dari element kedua
-    for (int i = 1; i < n; i++)
-    {
-
+    for (int i = 1; i < n; i++){
         int temp = arr[i];
         int j = i - 1;
         // mengeser elmen array [0.. i -1] yang lebih besar dari temp

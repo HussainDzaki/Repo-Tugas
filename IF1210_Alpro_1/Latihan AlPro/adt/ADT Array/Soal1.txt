@@ -1,0 +1,12 @@
+Fleksibilitas Insert/Delete:
+
+Pada Alt-1b/2b, insert tidak perlu menggeser semua elemen (cukup isi slot kosong di tengah).
+
+Delete cukup menimpa dengan mark atau set avail[i] = false.
+
+Efisiensi:
+
+firstEmpty (Alt-1b) dan avail (Alt-2b) mempercepat pencarian slot kosong.
+
+Konsistensi:
+Alt-1b/2b lebih cocok untuk kasus dinamis dengan perubahan frequent, sedangkan Alt-1a/2a lebih cocok untuk penyimpanan statis.

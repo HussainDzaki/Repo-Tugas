@@ -1,0 +1,1 @@
+sortList(&list1, 0);
