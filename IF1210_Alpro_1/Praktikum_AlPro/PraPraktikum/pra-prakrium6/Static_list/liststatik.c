@@ -344,4 +344,63 @@ void sortList(ListStatik *l, boolean asc){
 /* Proses : Mengurutkan l dengan salah satu algoritma sorting,
    algoritma bebas */
 
+
+
+int isPalindrom(ListStatik l){
+    int rg = getLastIdx(l);
+    int lf = 0;
+    int palindrom = 1;
+    while (palindrom && ELMT(l,lf) != MARK && ELMT(l,rg) != MARK){
+        if (ELMT(l,lf) != ELMT(l,rg)){
+            palindrom = 0;
+        }
+        rg--;
+        lf++;
+    }
+    return palindrom;
+}
+
+void closestPair(ListStatik l, ElType *p1, ElType *p2){
+    *p1 = ELMT(l,0);
+    *p2 = ELMT(l,1);
+    int len = listLength(l);
+    ElType minsubs = (*p1 - *p2) > 0 ? *p1 - *p2 : *p2 - *p1;
+    for (int i = 0; i < len; i++){
+        for (int j = 0; j < len; j++){
+            ElType min = (ELMT(l,i) - ELMT(l,j) > 0) ? ELMT(l,i) - ELMT(l,j) : ELMT(l,j) - ELMT(l,i);
+            if (i != j){
+                if (minsubs > min){
+                    minsubs = min;
+                    *p1 = ELMT(l,i);
+                    *p2 = ELMT(l,j);
+                }
+          }
+        }
+    }    
+}
+
+
+int isFront(ListStatik l1 , ListStatik l2){
+    if (isEmpty(l1) ){
+        return 1;
+    }else{
+        if (listLength(l1) < listLength(l2)){
+            int len = listLength(l1);
+            for (int i = 0; i < len && ELMT(l1,i) != MARK && ELMT(l2,i) != MARK; i++){
+                if (ELMT(l1,i) != ELMT(l2,i)){
+                    return 0;
+                }
+            }
+            return 1;
+            
+        }else{
+            return 0;
+        }
+        
+    }
+    
+}
+
+
+
 #endif
